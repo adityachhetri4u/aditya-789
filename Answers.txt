@@ -1,0 +1,11 @@
+1. Distinct reasons to change :-
+ Changes if we switch to a different database or change how we save data.
+ Changes if we change our email provider or how we send messages.
+ Changes if we want to change how the printed statement looks.
+ Changes if the rules for the bank account change (like adding fees for withdrawals).
+
+2. Job description :-
+The BankAccount should only be responsible for keeping track of the balance and doing the math for deposits and withdrawals.
+
+5.in the end we have 5 classes in total (BankAccount, AccountRepository, NotificationService, StatementGenerator, and Main). 
+This is much easier to test than the original single class because we can test if the deposits and withdrawals work perfectly in BankAccount without having to worry about connecting to a real database or accidentally sending out real emails. Each class just has one simple job to test.
