@@ -1,5 +1,5 @@
 public class Bank {
-    // Bank now depends entirely on abstractions (interfaces), perfectly following DIP!
+    
     private NotificationService notifier;
     private AccountRepository repository;
 

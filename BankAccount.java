@@ -1,6 +1,6 @@
 public class BankAccount {
     private String accountNumber;
-    protected double balance; // Changed to protected so subclasses can use it
+    protected double balance; 
 
     public BankAccount(String accountNumber, double initialBalance) {
         this.accountNumber = accountNumber;

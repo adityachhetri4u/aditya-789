@@ -10,7 +10,6 @@ public class SavingsAccount extends BankAccount implements Depositable, Withdraw
         }
     }
     
-    // Depositable's deposit(double) is already perfectly satisfied by the BankAccount superclass!
 
     @Override
     public void transfer(double amount, String toAccount) {
