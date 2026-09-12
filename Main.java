@@ -1,39 +1,25 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
-        
         InterestPolicy savingsPolicy = new SavingsInterestPolicy();
-        InterestPolicy currentPolicy = new CurrentInterestPolicy();
-        InterestPolicy salaryPolicy = new SalaryInterestPolicy();
-
         SavingsAccount mySavings = new SavingsAccount("SAV-111", 1000.0);
-        CurrentAccount myCurrent = new CurrentAccount("CUR-222", 1000.0);
-        SalaryAccount mySalary = new SalaryAccount("SAL-333", 1000.0);
 
-        NotificationService emailNotifier = new NotificationService();
-        Bank greenLeafBank = new Bank(emailNotifier);
+        // Injecting dependencies into Bank
+        NotificationService emailNotifier = new EmailNotificationService();
+        
+        // --- THIS IS THE ONLY LINE WE CHANGED TO SWAP THE DATABASE! ---
+        AccountRepository repository = new FileAccountRepository(); 
+        
+        Bank greenLeafBank = new Bank(emailNotifier, repository);
 
-        System.out.println("--- Processing Interests ---");
+        System.out.println("--- Processing Interests with File DB ---");
         greenLeafBank.processAccount(mySavings, savingsPolicy);
-        greenLeafBank.processAccount(myCurrent, currentPolicy);
-        greenLeafBank.processAccount(mySalary, salaryPolicy);
-
-        System.out.println("\n--- LSP: Safe Withdrawals ---");
-        FixedDepositAccount fixedDeposit = new FixedDepositAccount("FD-999", 5000.0);
-
-        List<Withdrawable> withdrawableAccounts = new ArrayList<>();
-        withdrawableAccounts.add(mySavings);
-        withdrawableAccounts.add(myCurrent);
-        withdrawableAccounts.add(mySalary);
         
-
-        for (Withdrawable acc : withdrawableAccounts) {
-            acc.withdraw(50.0);
-            System.out.println("Withdrew $50 safely.");
-        }
-        
-        System.out.println("Fixed deposit balance remains safe: $" + fixedDeposit.getBalance());
+        // ATM testing
+        System.out.println("\n--- Testing ATM (ISP) ---");
+        ATM atm = new ATM();
+        atm.insertCard(mySavings);
+        atm.deposit(50.0);
+        atm.withdraw(20.0);
+        System.out.println("ATM operations successful. Current balance: $" + mySavings.getBalance());
     }
 }

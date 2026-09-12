@@ -1,0 +1,17 @@
+1. BankService / ATM warmup :-
+if we had a fat interface called BankService with all methods, the ATM class would look like this:
+class ATM implements BankService {
+    public void deposit() { /* needed */ }
+    public void withdraw() { /* needed */ }
+    public void transfer() { throw new Error("not needed"); }
+    public void printStatement() { throw new Error("not needed"); }
+    public void applyForLoan() { throw new Error("not needed"); }
+}
+the ATM is forced to implement transfer, printStatement, and applyForLoan even though an ATM doesn't do those things.
+
+3. DIP Warm-up :-
+in our setup, we made sure Bank never creates a new InMemoryAccountRepository() directly inside its own code. we rewrote Bank's constructor to accept the AccountRepository interface instead. this way, Bank doesn't know or care what database is being used.
+
+5. Reflecting on the 4-lab journey :-
+if we got a new requirement today to "add a MongoAccountRepository", the only things we would do is create one brand new file (MongoAccountRepository.java) that implements AccountRepository, and then touch one single line in Main.java to pass it into the Bank. we wouldn't have to touch Bank.java, BankAccount.java, or any other core files at all! 
+if we had to do this in the original single BankAccount class from Lab 1, we would have had to open that massive file, add new database connection code right next to the withdrawal math, probably add more if/else statements, and risk breaking the entire banking system just to change the database. the new design is so much safer and easier to extend!
