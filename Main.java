@@ -1,22 +1,27 @@
 public class Main {
     public static void main(String[] args) {
-        
-        BankAccount myAccount = new BankAccount("ACCT-1234", 100.0);
-        
-        myAccount.deposit(50.0);
-        myAccount.withdraw(20.0);
-        myAccount.deposit(10.0);
-        
-        AccountRepository repository = new AccountRepository();
-        repository.save(myAccount);
-        
-        NotificationService notifier = new NotificationService();
-        notifier.send("Your transaction was successful. Balance is now $" + myAccount.getBalance());
-        
-        StatementGenerator generator = new StatementGenerator();
-        String myStatement = generator.generate(myAccount);
-        
-        System.out.println("\n--- PRINTED STATEMENT ---");
-        System.out.println(myStatement);
+        // Create the different interest policies
+        InterestPolicy savingsPolicy = new SavingsInterestPolicy();
+        InterestPolicy currentPolicy = new CurrentInterestPolicy();
+        InterestPolicy salaryPolicy = new SalaryInterestPolicy();
+
+        // Create the accounts
+        BankAccount mySavings = new BankAccount("SAV-111", 1000.0);
+        BankAccount myCurrent = new BankAccount("CUR-222", 1000.0);
+        SalaryAccount mySalary = new SalaryAccount("SAL-333", 1000.0);
+
+        // We can pass our existing NotificationService into the Bank
+        NotificationService emailNotifier = new NotificationService();
+        Bank greenLeafBank = new Bank(emailNotifier);
+
+        // Process interest using policies instead of an ugly if/else chain!
+        System.out.println("--- Processing Savings ---");
+        greenLeafBank.processAccount(mySavings, savingsPolicy);
+
+        System.out.println("\n--- Processing Current ---");
+        greenLeafBank.processAccount(myCurrent, currentPolicy);
+
+        System.out.println("\n--- Processing Salary ---");
+        greenLeafBank.processAccount(mySalary, salaryPolicy);
     }
 }

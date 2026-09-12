@@ -1,0 +1,6 @@
+1. (Warm-up) For the InterestCalculator with if/else:
+If I needed to add a 4th account type, I would have to open the InterestCalculator.java file and edit the calculateInterest method directly. I'd have to add a new "else if (accountType.equals("Salary"))" block right in the middle of it.
+
+5. (Wrap-up) Mentally diffing for the Salary Account requirement:
+For the new Salary account, the ONLY things I had to do were create brand new files (SalaryAccount.java and SalaryInterestPolicy.java) and then update Main.java to use them. 
+I can confirm that zero existing policy classes (like SavingsInterestPolicy) changed. Adding new features without touching old code works perfectly!

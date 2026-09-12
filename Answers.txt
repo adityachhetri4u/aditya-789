@@ -5,7 +5,7 @@
  Changes if the rules for the bank account change (like adding fees for withdrawals).
 
 2. Job description :-
-The BankAccount should only be responsible for keeping track of the balance and doing the math for deposits and withdrawals.
+The BankAccount should only be responsible for keeping track of the balance and performing operations like deposits and withdrawals.
 
 5.in the end we have 5 classes in total (BankAccount, AccountRepository, NotificationService, StatementGenerator, and Main). 
 This is much easier to test than the original single class because we can test if the deposits and withdrawals work perfectly in BankAccount without having to worry about connecting to a real database or accidentally sending out real emails. Each class just has one simple job to test.
