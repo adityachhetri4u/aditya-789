@@ -1,6 +1,6 @@
 public class BankAccount {
     private String accountNumber;
-    private double balance;
+    protected double balance; // Changed to protected so subclasses can use it
 
     public BankAccount(String accountNumber, double initialBalance) {
         this.accountNumber = accountNumber;
@@ -10,12 +10,6 @@ public class BankAccount {
     public void deposit(double amount) {
         if (amount > 0) {
             balance = balance + amount;
-        }
-    }
-
-    public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance = balance - amount;
         }
     }
 

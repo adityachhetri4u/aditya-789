@@ -1,0 +1,11 @@
+1. Rectangle / Square output :-
+we ran the classic Rectangle/Square example. we set the width to 10 and height to 20 on a Square that was saved as a Rectangle variable, and the calculated area came out as 400 instead of the expected 200.
+
+2. Why it breaks LSP :-
+calling code assumes that when working with a Rectangle, changing the height will not magically change the width. the Square class breaks this assumption because its setHeight method changes both sides at once. this means we can't safely substitute a Square wherever a Rectangle is expected without causing bugs.
+
+3. FixedDepositAccount crash :-
+we created a loop that called withdraw() on a List of generic Accounts. when the loop reached the FixedDepositAccount, it threw an UnsupportedOperationException and completely crashed our program.
+
+5. Why throwing an exception is the wrong fix :-
+if we make FixedDepositAccount implement Withdrawable but just throw an exception inside, it violates the LSP substitution rule. the rule says subclasses must fulfill the contracts of their parent types. calling code expects anything that is Withdrawable to actually allow withdrawals, not crash the app when we try to use it.

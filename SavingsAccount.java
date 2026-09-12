@@ -1,5 +1,5 @@
-public class SalaryAccount extends BankAccount implements Withdrawable {
-    public SalaryAccount(String accountNumber, double initialBalance) {
+public class SavingsAccount extends BankAccount implements Withdrawable {
+    public SavingsAccount(String accountNumber, double initialBalance) {
         super(accountNumber, initialBalance);
     }
 
