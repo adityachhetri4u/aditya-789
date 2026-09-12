@@ -1,6 +1,5 @@
 public class Bank {
-    // Bank accepts a NotificationService through its constructor.
-    // This means we can swap it with SMSNotificationService later without touching this code!
+    
     private NotificationService notifier;
 
     public Bank(NotificationService notifier) {

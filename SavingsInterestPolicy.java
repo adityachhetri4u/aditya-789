@@ -1,6 +1,6 @@
 public class SavingsInterestPolicy implements InterestPolicy {
     @Override
     public double calculate(double balance) {
-        return balance * 0.04; // 4% interest
+        return balance * 0.04;
     }
 }

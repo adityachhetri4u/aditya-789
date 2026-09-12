@@ -1,6 +1,6 @@
 public class LSPWarmup {
     public static void main(String[] args) {
-        // 1. Rectangle / Square example
+        
         Rectangle rect = new Square();
         rect.setWidth(10);
         rect.setHeight(20);

@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        // --- Section 2 logic ---
+        
         InterestPolicy savingsPolicy = new SavingsInterestPolicy();
         InterestPolicy currentPolicy = new CurrentInterestPolicy();
         InterestPolicy salaryPolicy = new SalaryInterestPolicy();
@@ -20,17 +20,14 @@ public class Main {
         greenLeafBank.processAccount(myCurrent, currentPolicy);
         greenLeafBank.processAccount(mySalary, salaryPolicy);
 
-        // --- Section 3 LSP logic ---
         System.out.println("\n--- LSP: Safe Withdrawals ---");
         FixedDepositAccount fixedDeposit = new FixedDepositAccount("FD-999", 5000.0);
 
-        // Create a list of ONLY accounts that implement Withdrawable
         List<Withdrawable> withdrawableAccounts = new ArrayList<>();
         withdrawableAccounts.add(mySavings);
         withdrawableAccounts.add(myCurrent);
         withdrawableAccounts.add(mySalary);
         
-        // withdrawableAccounts.add(fixedDeposit); // This would cause a compile error, which is perfect!
 
         for (Withdrawable acc : withdrawableAccounts) {
             acc.withdraw(50.0);
